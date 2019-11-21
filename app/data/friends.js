@@ -1,6 +1,5 @@
 var path = require("path");
 
-module.exports = function(app) {
 var friends = [
     {
     name: "Jason",
@@ -17,4 +16,5 @@ var friends = [
         1]
 }
 ];
-};
+
+module.exports = friends;
