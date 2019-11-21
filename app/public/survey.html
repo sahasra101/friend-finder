@@ -5,12 +5,10 @@
     <title>Survey-Friend-Finder</title>
 
     <!-- Latest compiled and minified CSS & JS -->
-    <link rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <link rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://code.jquery.com/jquery.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -152,7 +150,8 @@
         <br>
 
         <!-- Submit Button -->
-        <button type="submit" class="btn btn-success btn-lg" id="submit"><i class="fa fa-upload"></i> Submit Your Answers and Find Your Match!! </button>
+        <button type="submit" class="btn btn-success btn-lg" id="submit"><i class="fa fa-upload"></i> Submit Your
+            Answers and Find Your Match!! </button>
 
         <hr>
         <footer class="footer">
@@ -170,7 +169,7 @@
             event.preventDefault();
 
             // Form validation using class form-control and chosen-select
-            function validateForm() {
+            function validateForm()   {
                 var isValid = true;
                 $(".form-control").each(function () {
                     if ($(this).val() === "") {
@@ -208,18 +207,36 @@
                 };
 
                 console.log(friend);
+                resetForm();
 
                 // AJAX post the data to the friends API.
-                var currentURL = window.location.origin;
-                $.post(currentURL+"/api/friends", friend, function (data) {
-                    console.log("new friend added: "+friend.name);
-                });                
+                // var currentURL = window.location.origin;
+                $.post("/api/friends", friend, function (data) {
+                    if (data) {
+                        console.log("new friend added: " + friend.name);
+                    }
+                });
             } else {
                 alert("Please fill out all fields before submitting!");
             }
         });
+
+        function resetForm() {
+            $("#name").val("");
+            $("#photo").val("");
+            $("#q1").val("");
+            $("#q2").val("");
+            $("#q3").val("");
+            $("#q4").val("");
+            $("#q5").val("");
+            $("#q6").val("");
+            $("#q7").val("");
+            $("#q8").val("");
+            $("#q9").val("");
+            $("#q10").val("");
+        }
     </script>
- 
+
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
