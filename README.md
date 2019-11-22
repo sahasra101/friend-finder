@@ -18,7 +18,7 @@ Home page displayed:
 ![Home page for Friend Finder App](assets/homePage.png)
 
 Survery page displayed:
-![Survery page for Friend Finder App](assets/surveyPage.png)
+![Survery page for Friend Finder App](assets/SurveyPage.png)
 
 Match displayed:
 ![Match displayed for user](assets/MatchModal.png)
