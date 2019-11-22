@@ -8,11 +8,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
 </head>
 
 <body>
-
     <div class="jumbotron">
         <h1 class="display-4 font-weight-bold"><span class="fa fa-facebook-square"></span> Friend Finder Survey
             Questions</h1>
@@ -32,7 +30,7 @@
         <hr>
 
         <h3><strong>Personality Question 1</strong></h3>
-        <h4>You are driven by basic instints like survival, food and sleep.</h4>
+        <h4>You are driven by basic instincts like survival, food and sleep.</h4>
         <select class="chosen-select" id="q1">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
@@ -223,27 +221,19 @@
                     ]
                 };
                 console.log(friend);
-
                 resetForm();
-                // call function to do comparison\
-
-                // AJAX post the data to the friends API.
-                // var currentURL = window.location.origin;
                 $.post("/api/friends", friend, function (data) {
-
                 });
+                $.ajax({ url: "/api/match", method: "GET" })
+                    .then(function (data) {
+                        console.log(data);
+                        $("#match-name").text("Congratulations! Your match is... "+data.name);
+                        $("#match-img").attr("src", data.photo).css("max-width", "100%").addClass("img-responsive");
+                    });
             } else {
-                alert("Please fill out all fields before submitting!");
+                alert("Please fill out all fields correctly!");
             }
-
-            $.ajax({ url: "/api/match", method: "GET" })
-                .then(function (data) {
-                    console.log(data);
-                    $("#match-name").text(`Congratulations! Your match is...${data.name}`);
-                    $("#match-img").attr("src", data.photo).css("max-width", "100%").addClass("img-responsive");
-                });
         });
-
         function resetForm() {
             $("#name").val("");
             $("#photo").val("");
