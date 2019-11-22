@@ -10,7 +10,7 @@ module.exports = function (app) {
     app.post("/api/friends", function (req, res) {
         function compScores(arr1, arr2) {
             var tempScore = 0;
-            for (var i = 0; i < 10; i++) {
+            for (var i = 0; i < arr1.length; i++) {
                 tempScore += Math.abs(parseInt(arr1[i]) - parseInt(arr2[i]));
             }
             return tempScore;
@@ -24,17 +24,14 @@ module.exports = function (app) {
                 matchedindex = i;
             }
         }
-        // these console log in the CLI
-        console.log(closestMatch);
+        console.log(closestMatch); // these console log in the CLI
         console.log(friends[matchedindex].name);
         console.log(friends[matchedindex].photo);
         match = {
             name:friends[matchedindex].name,
             photo:friends[matchedindex].photo
         }
-        app.get("/api/match", function (req, res) {
-            res.json(match);
-        });
         friends.push(req.body);
+        res.json(match);
     });
 };
