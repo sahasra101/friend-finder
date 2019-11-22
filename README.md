@@ -15,17 +15,10 @@ This is a NODE app that uses the express package to help friends with similar pe
 ## link to the deployed site on Heroku 
 * https://afternoon-ocean-50601.herokuapp.com/
 
-## screenshots, gifs or videos of the app functioning
+## screenshot of the app functioning
 
 Home page displayed:
 ![Home page for Friend Finder App](assets/homePage.png)
-
-Survery page displayed:
-![Survery page for Friend Finder App](assets/SurveyPage.png)
-
-Match displayed:
-![Match displayed for user](assets/MatchModal.png)
-
 
 ## Technologies used in this app:
 * HTML
