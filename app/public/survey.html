@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <title>Survey-Friend-Finder</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -51,7 +50,6 @@
             <option value="5">5 (Strongly Agree)</option>
         </select>
 
-
         <h3><strong>Personality Question 3</strong></h3>
         <h4>You never get anxious or nervous.</h4>
         <select class="chosen-select" id="q3">
@@ -62,7 +60,6 @@
             <option value="4">4</option>
             <option value="5">5 (Strongly Agree)</option>
         </select>
-
 
         <h3><strong>Personality Question 4</strong></h3>
         <h4>You always plan ahead and are never spontaneous.</h4>
@@ -75,7 +72,6 @@
             <option value="5">5 (Strongly Agree)</option>
         </select>
 
-
         <h3><strong>Personality Question 5</strong></h3>
         <h4>You prefer to be around people versus being alone.</h4>
         <select class="chosen-select" id="q5">
@@ -86,7 +82,6 @@
             <option value="4">4</option>
             <option value="5">5 (Strongly Agree)</option>
         </select>
-
 
         <h3><strong>Personality Question 6</strong></h3>
         <h4>You consider yourself empathic and can feel the emotions of others around you.</h4>
@@ -178,7 +173,17 @@
 
     </div>
 
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
     <script type="text/javascript">
+
         // Capture user info and survey results
         $("#submit").on("click", function (event) {
             event.preventDefault();
@@ -224,15 +229,17 @@
                 resetForm();
                 $.post("/api/friends", friend, function (data) {
                 });
-                $.ajax({ url: "/api/match", method: "GET" })
-                    .then(function (data) {
-                        console.log(data);
-                        $("#match-name").text("Congratulations! Your match is... "+data.name);
-                        $("#match-img").attr("src", data.photo).css("max-width", "100%").addClass("img-responsive");
-                    });
             } else {
                 alert("Please fill out all fields correctly!");
             }
+            setTimeout(function(){
+            $.ajax({ url: "/api/match", method: "GET" })
+                .then(function (data) {
+                    console.log(data);
+                    $("#match-name").text("Congratulations! Your match is... " + data.name);
+                    $("#match-img").attr("src", data.photo).css("max-width", "100%").addClass("img-responsive");
+                });
+                },500);
         });
         function resetForm() {
             $("#name").val("");
@@ -249,16 +256,6 @@
             $("#q10").val("");
         }
     </script>
-
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
 
 </body>
 
