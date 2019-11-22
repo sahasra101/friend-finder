@@ -163,13 +163,12 @@
     </div>
 
     <script type="text/javascript">
-
         // Capture user info and survey results
         $("#submit").on("click", function (event) {
             event.preventDefault();
 
             // Form validation using class form-control and chosen-select
-            function validateForm()   {
+            function validateForm() {
                 var isValid = true;
                 $(".form-control").each(function () {
                     if ($(this).val() === "") {
@@ -207,19 +206,29 @@
                 };
 
                 console.log(friend);
+
                 resetForm();
+                // call function to do comparison\
 
                 // AJAX post the data to the friends API.
                 // var currentURL = window.location.origin;
                 $.post("/api/friends", friend, function (data) {
-                    if (data) {
-                        console.log("new friend added: " + friend.name);
-                    }
+
                 });
             } else {
                 alert("Please fill out all fields before submitting!");
             }
+
+            $.ajax({ url: "/api/match", method: "GET" })
+                .then(function (data) {
+                    console.log(data);
+                });
+
         });
+
+
+        // console.log(matchedName);
+        // console.log(matchedPic);
 
         function resetForm() {
             $("#name").val("");
@@ -235,6 +244,7 @@
             $("#q9").val("");
             $("#q10").val("");
         }
+
     </script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"
