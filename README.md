@@ -12,6 +12,9 @@ This is a NODE app that uses the express package to help friends with similar pe
 ## link to the Github repository - this app is a nodeJS app which can be run on a command line interface like Gitbash
 * https://github.com/sahasra101/friend-finder
 
+## link to the deployed site on Heroku 
+* https://afternoon-ocean-50601.herokuapp.com/
+
 ## screenshots, gifs or videos of the app functioning
 
 Home page displayed:
