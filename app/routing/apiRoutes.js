@@ -1,5 +1,4 @@
 var path = require("path");
-
 var friends = require("../data/friends.js");
 
 
@@ -28,6 +27,7 @@ module.exports = function (app) {
                 matchedindex = i;
             }
         }
+        // these console log in the CLI
         console.log(closestMatch);
         console.log(friends[matchedindex].name);
         console.log(friends[matchedindex].photo);
@@ -35,10 +35,6 @@ module.exports = function (app) {
             name:friends[matchedindex].name,
             photo:friends[matchedindex].photo
         }
-        // res.json(match);
-        
-      
-
         friends.push(req.body);
 
     });

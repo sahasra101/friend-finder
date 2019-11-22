@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Survey-Friend-Finder</title>
 
-    <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery.js"></script>
@@ -26,7 +25,7 @@
         <input type="text" id="photo" class="form-control" required>
     </div>
 
-    <!-- survey questions -->
+    <!-- my survey questions -->
     <div class="container">
 
         <h2>10 Survey Questions To Help Find Your Match</h2>
@@ -149,9 +148,28 @@
         <br>
         <br>
 
-        <!-- Submit Button -->
-        <button type="submit" class="btn btn-success btn-lg" id="submit"><i class="fa fa-upload"></i> Submit Your
+        <!-- Submit Button for survery and modal -->
+        <button type="submit" class="btn btn-success btn-lg" id="submit" data-toggle="modal"
+            data-target="#exampleModalCenter"><i class="fa fa-upload"></i> Submit Your
             Answers and Find Your Match!! </button>
+
+        <div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Your Match</h2>
+                    </div>
+                    <div class="modal-body">
+                        <h3 id="match-name"></h3>
+                        <br>
+                        <img id="match-img" alt="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <hr>
         <footer class="footer">
@@ -204,7 +222,6 @@
                         $("#q10").val()
                     ]
                 };
-
                 console.log(friend);
 
                 resetForm();
@@ -222,13 +239,10 @@
             $.ajax({ url: "/api/match", method: "GET" })
                 .then(function (data) {
                     console.log(data);
+                    $("#match-name").text(`Congratulations! Your match is...${data.name}`);
+                    $("#match-img").attr("src", data.photo).css("max-width", "100%").addClass("img-responsive");
                 });
-
         });
-
-
-        // console.log(matchedName);
-        // console.log(matchedPic);
 
         function resetForm() {
             $("#name").val("");
@@ -244,7 +258,6 @@
             $("#q9").val("");
             $("#q10").val("");
         }
-
     </script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"
